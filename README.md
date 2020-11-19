@@ -8,3 +8,4 @@ Diplomatura en ciencias de datos
 **Trabajos**
 
 [Covid-19 Argentina 16/11/2020](https://facundososalopez.github.io/infovis/covid-19_2020-11-16.html)
+[Makeover monday W46](https://facundososalopez.github.io/infovis/mom_w46_rawgraph.html)
