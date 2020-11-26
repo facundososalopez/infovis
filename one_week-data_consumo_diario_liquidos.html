@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>One week data - consumo diario de liquidos</title>
+    
+  </head>
+  <body>
+    <h1>One week data - consumo diario de liquidos</h1>
+    
+    <div id="vis"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@4.17.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.12.2"></script>
+    
+    <script type="text/javascript">
+      var vlSpec = {
+        "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+  "data": {"url": "https://docs.google.com/spreadsheets/d/1Qo4Jk0S2ZHWaEnJDVHmcv6uRRg3SnE4-LvN1VOXyHBg/gviz/tq?tqx=out:csv", "format": { "type": "csv"}},
+  "width": 600,
+  "height": 400,
+  "layer": [
+    {
+      "mark": { "type": "bar", "tooltip": true },
+      "encoding": {
+        "x": {
+          "timeUnit": "monthdate",
+          "field": "fecha_hora",
+          "type": "ordinal",
+          "title": "Fecha"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "cantidad",
+          "type": "quantitative",
+          "stack": true,
+          "title": "Cantidad (cc)"
+        },
+        "color": {
+          "field": "tipo_liquido",
+          "type": "nominal",
+          "scale": {
+            "domain": ["C","M","A","J","Al"],
+            "range": ["#6f4e37", "#919f6b", "#aec7e8", "#ffa500", "#9467bd"]
+          },
+          "title": "Tipo de Líquido"
+        }
+      }
+    },
+    {
+      "mark": { "type": "circle", "tooltip": true },
+      "encoding": {
+        "x": {
+          "timeUnit": "monthdate",
+          "field": "fecha_hora",
+          "type": "ordinal"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "cantidad",
+          "type": "quantitative",
+          "title": "Cantidad (cc)"
+        }          
+      }
+    },
+    {
+      "mark": { "type": "arc", "align": "right", "xOffset": 410, "yOffset": 50, "radius": 100 },
+      "encoding": {
+        "theta": { "aggregate": "sum", "field": "cantidad", "type": "quantitative" },
+        "color": { "field": "tipo_liquido", "type": "nominal" }
+      }
+    }
+  ]
+      };
+      vegaEmbed('#vis', vlSpec);
+    </script>
+  </body>
+</html>
